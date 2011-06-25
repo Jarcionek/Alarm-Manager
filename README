@@ -1,0 +1,5 @@
+Java alarm manager.
+
+Allows to set alarm/timer and plays chosen *.mp3 file at the time set. Alarms are saved whenever a new one is added and loaded on program startup. If an alarm has passed while the program was off, a proper message is shown on program startup so it can be safely put in the system autostart. Uses interprocess communication to notify a program about creating another instance - it allows to create a shortcut to the jar file to rivet the attention of the first instance of the program (second is terminated). Program allows to have it windows closed and works in background, is accessible via tray icon.
+
+The program generates files in its current directory so it is recommended to create a folder for it. Also do not put a jar file in the startup, but a link to the jar file.
