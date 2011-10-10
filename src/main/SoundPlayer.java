@@ -1,5 +1,6 @@
 package main;
 
+import java.awt.Toolkit;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -23,19 +24,28 @@ public class SoundPlayer {
             private AdvancedPlayer player;
             @Override
             public void run() {
+//                try {
+//                    FileInputStream fis = new FileInputStream(file);
+//                    BufferedInputStream bis = new BufferedInputStream(fis);
+//
+//                    player = new AdvancedPlayer(bis);
+//                    player.play();
+//                } catch (Exception ex) {}
                 try {
-                    FileInputStream fis = new FileInputStream(file);
-                    BufferedInputStream bis = new BufferedInputStream(fis);
-
-                    player = new AdvancedPlayer(bis);
-                    player.play();
-                } catch (Exception ex) {}
+                    while (!isInterrupted()) {
+                        for (int i = 0; i < 5; i++) {
+                            Toolkit.getDefaultToolkit().beep();
+                            Thread.sleep(100);
+                        }
+                        Thread.sleep(400);
+                    }
+                } catch (InterruptedException ex) {}
             }
             @Override
             public void interrupt() {
-                if (player != null) {
-                    player.close();
-                }
+//                if (player != null) {
+//                    player.close();
+//                }
                 super.interrupt();
             }
         };

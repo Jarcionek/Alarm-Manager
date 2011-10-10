@@ -9,7 +9,6 @@ import java.io.ObjectOutputStream;
 import java.util.PriorityQueue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 /**
  * @author Jaroslaw Pawlak
@@ -51,8 +50,8 @@ public class Alarms {
                 FILE.createNewFile();
             } catch (IOException ex) {
                 Logger.getLogger(Settings.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(null, "Could not create a file " +
-                        FILE + "\n" + ex, Main.NAME, JOptionPane.ERROR_MESSAGE);
+                MyOptionPane.showDialog(null, "Could not create a file " +
+                        FILE + "\n" + ex, Main.NAME, MyOptionPane.ERROR_MESSAGE);
                 System.exit(1);
             }
         }
@@ -66,8 +65,8 @@ public class Alarms {
             fos.close();
         } catch (Exception ex) {
             Logger.getLogger(Settings.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Could not save alarms:\n" +
-                    ex, Main.NAME, JOptionPane.ERROR_MESSAGE);
+            MyOptionPane.showDialog(null, "Could not save alarms:\n" +
+                    ex, Main.NAME, MyOptionPane.ERROR_MESSAGE);
             System.exit(1);
         }
         Debug.print("alarms saved");
@@ -88,8 +87,8 @@ public class Alarms {
             fis.close();
         } catch (Exception ex) {
             Logger.getLogger(Settings.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Could not load alarms from file " +
-                    FILE + "\n" + ex, Main.NAME, JOptionPane.ERROR_MESSAGE);
+            MyOptionPane.showDialog(null, "Could not load alarms from file " +
+                    FILE + "\n" + ex, Main.NAME, MyOptionPane.ERROR_MESSAGE);
             System.exit(1);
         }
         Debug.print("alarms loaded");

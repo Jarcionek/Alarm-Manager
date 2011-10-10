@@ -7,7 +7,6 @@ import java.nio.channels.FileChannel;
 import java.nio.channels.FileLock;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 /**
  * @author Jaroslaw Pawlak
@@ -36,8 +35,8 @@ public class Lock {
             }
         } catch (Exception ex) {
             Logger.getLogger(Settings.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Could not acquire lock:\n" + ex,
-                    Main.NAME, JOptionPane.ERROR_MESSAGE);
+            MyOptionPane.showDialog(null, "Could not acquire lock:\n" + ex,
+                    Main.NAME, MyOptionPane.ERROR_MESSAGE);
             System.exit(1);
         }
         return true;
@@ -51,8 +50,8 @@ public class Lock {
             }
         } catch (IOException ex) {
             Logger.getLogger(Settings.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Could not release lock:\n" + ex,
-                    Main.NAME, JOptionPane.ERROR_MESSAGE);
+            MyOptionPane.showDialog(null, "Could not release lock:\n" + ex,
+                    Main.NAME, MyOptionPane.ERROR_MESSAGE);
             System.exit(1);
         }
         Debug.print("lock released");

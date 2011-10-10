@@ -14,13 +14,11 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.text.DecimalFormat;
 import java.util.Calendar;
-import javax.imageio.ImageIO;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -74,15 +72,7 @@ public class NewAlarmFrame extends JFrame {
             }
         });
 
-        try {
-            this.setIconImage(ImageIO.read(this.getClass().getResource("/resources/sandglass.png")));
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Could not load sandglass.png " +
-                    "for " + this.getClass().getSimpleName() + ":\n" +
-                    ex, Main.NAME, JOptionPane.WARNING_MESSAGE);
-            System.err.println("Could not load sandglass.png for " +
-                    this.getClass().getSimpleName() + ":\n" + ex);
-        }
+        this.setIconImage(Main.IMAGE);
 
         this.createComponents();
         this.createLayout();

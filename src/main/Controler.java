@@ -1,7 +1,5 @@
 package main;
 
-import javax.swing.JOptionPane;
-
 /**
  * @author Jaroslaw Pawlak
  */
@@ -16,8 +14,8 @@ public class Controler {
         Alarm alarm;
         while ((alarm = Alarms.getFirstAlarm()) != null
                 && alarm.getTime() < System.currentTimeMillis()) {
-            JOptionPane.showMessageDialog(null, "Alarm missed:\n" + alarm,
-                    Main.NAME, JOptionPane.WARNING_MESSAGE);
+            MyOptionPane.showDialog(null, "Alarm missed:\n" + alarm,
+                    Main.NAME, MyOptionPane.WARNING_MESSAGE);
             Alarms.remove(alarm);
             AlarmsMainFrame.update();
         }
@@ -48,8 +46,13 @@ public class Controler {
                 Debug.print("waiting done");
                 
                 SoundPlayer.play(finalAlarm.getSound());
-                JOptionPane.showMessageDialog(null, "Alarm:\n" + Alarms.getFirstAlarm(),
-                        Main.NAME, JOptionPane.PLAIN_MESSAGE);
+//                JOptionPane.showMessageDialog(null, "Alarm:\n" + Alarms.getFirstAlarm(),
+//                        Main.NAME, JOptionPane.PLAIN_MESSAGE);
+                MyOptionPane.showDialog(null,
+                        "Alarm:\n" + Alarms.getFirstAlarm(),
+                        Main.NAME, MyOptionPane.PLAIN_MESSAGE,
+                        MyOptionPane.DEFAULT_OPTION, null, Main.IMAGE);
+                
                 SoundPlayer.stop();
                 Alarms.removeFirstAlarm();
                 AlarmsMainFrame.update();

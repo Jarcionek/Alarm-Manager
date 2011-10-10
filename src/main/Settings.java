@@ -11,7 +11,6 @@ import java.io.ObjectOutputStream;
 import java.util.Hashtable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 /**
  * @author Jaroslaw Pawlak
@@ -34,8 +33,8 @@ public class Settings {
                 FILE.createNewFile();
             } catch (IOException ex) {
                 Logger.getLogger(Settings.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(null, "Could not create a file " +
-                        FILE + "\n" + ex, Main.NAME, JOptionPane.ERROR_MESSAGE);
+                MyOptionPane.showDialog(null, "Could not create a file " +
+                        FILE + "\n" + ex, Main.NAME, MyOptionPane.ERROR_MESSAGE);
                 System.exit(1);
             }
         }
@@ -50,8 +49,8 @@ public class Settings {
             fos.close();
         } catch (Exception ex) {
             Logger.getLogger(Settings.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Could not save settings:\n" +
-                    ex, Main.NAME, JOptionPane.ERROR_MESSAGE);
+            MyOptionPane.showDialog(null, "Could not save settings:\n" +
+                    ex, Main.NAME, MyOptionPane.ERROR_MESSAGE);
             System.exit(1);
         }
         Debug.print("");
@@ -85,8 +84,8 @@ public class Settings {
             fis.close();
         } catch (Exception ex) {
             Logger.getLogger(Settings.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Could not load settings from file " +
-                    FILE + "\n" + ex, Main.NAME, JOptionPane.ERROR_MESSAGE);
+            MyOptionPane.showDialog(null, "Could not load settings from file " +
+                    FILE + "\n" + ex, Main.NAME, MyOptionPane.ERROR_MESSAGE);
             System.exit(1);
         }
 
@@ -110,7 +109,7 @@ public class Settings {
         settings.put(KEY_NEW_ALARM_FRAME_POSITION, new Point(50, 50));
         settings.put(KEY_FONT, new Font("", Font.PLAIN, 16));
         settings.put(KEY_MAIN_FRAME_POSITION, new Point(50, 50));
-        settings.put(KEY_MAIN_FRAME_VISIBLE, Boolean.TRUE);
+        settings.put(KEY_MAIN_FRAME_VISIBLE, false);
 //        try {
 //            settings.put(KEY_ALARM_SOUND, new File(Settings.class.getResource("/resources/sample.mp3").toURI()));
 //        } catch (URISyntaxException ex) {

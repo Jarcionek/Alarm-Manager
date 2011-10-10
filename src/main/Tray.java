@@ -14,7 +14,6 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import javax.swing.JOptionPane;
 
 /**
  * @author Jaroslaw Pawlak
@@ -27,9 +26,9 @@ public class Tray {
             image = ImageIO.read(Main.class.getResource("/resources/sandglass.png"));
         } catch (IOException ex) {
             Logger.getLogger(Settings.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Could not load sandglass.png " +
+            MyOptionPane.showDialog(null, "Could not load sandglass.png " +
                     "for " + Tray.class.getSimpleName() + ":\n" + ex,
-                    Main.NAME, JOptionPane.WARNING_MESSAGE);
+                    Main.NAME, MyOptionPane.ERROR_MESSAGE);
             System.exit(1);
         }
 
@@ -65,9 +64,9 @@ public class Tray {
             SystemTray.getSystemTray().add(trayIcon);
         } catch (AWTException ex) {
             Logger.getLogger(Settings.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Could not add a tray icon " +
+            MyOptionPane.showDialog(null, "Could not add a tray icon " +
                     "to the system tray:\n" + ex,
-                    Main.NAME, JOptionPane.WARNING_MESSAGE);
+                    Main.NAME, MyOptionPane.ERROR_MESSAGE);
             System.exit(1);
         }
     }

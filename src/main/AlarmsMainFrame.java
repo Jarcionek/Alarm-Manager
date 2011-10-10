@@ -10,13 +10,11 @@ import java.awt.event.FocusEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
-import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
@@ -36,15 +34,8 @@ public class AlarmsMainFrame extends JFrame {
         this.setLocation((Point) Settings.get(Settings.KEY_MAIN_FRAME_POSITION));
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 
-        try {
-            this.setIconImage(ImageIO.read(this.getClass().getResource("/resources/sandglass.png")));
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Could not load sandglass.png " +
-                    "for " + this.getClass().getSimpleName() + ":\n" + ex,
-                    Main.NAME, JOptionPane.WARNING_MESSAGE);
-            System.err.println("Could not load sandglass.png " +
-                    "for " + this.getClass().getSimpleName() + ":\n" + ex);
-        }
+        
+        this.setIconImage(Main.IMAGE);
 
         this.createComponents();
         this.createMenuBar();
@@ -91,7 +82,7 @@ public class AlarmsMainFrame extends JFrame {
             }
             @Override
             public Object getValueAt(int rowIndex, int columnIndex) {
-                switch(columnIndex) {
+                switch (columnIndex) {
                     case 0: return alarms[rowIndex];
                     case 1: return deleteFlags[rowIndex];
                     default: return null;
@@ -110,7 +101,11 @@ public class AlarmsMainFrame extends JFrame {
             }
             @Override
             public Class getColumnClass(int c) {
-                return getValueAt(0, c).getClass();
+                switch (c) {
+                    case 0: return Alarm.class;
+                    case 1: return Boolean.class;
+                    default: return null;
+                }
             }
 
             @Override
@@ -120,6 +115,7 @@ public class AlarmsMainFrame extends JFrame {
         });
 
         table.getTableHeader().setResizingAllowed(false);
+        table.getTableHeader().setReorderingAllowed(false);
         table.getColumnModel().getColumn(0).setPreferredWidth(2147483647);
         table.setColumnSelectionAllowed(false);
         table.setRowSelectionAllowed(false);
@@ -211,6 +207,7 @@ public class AlarmsMainFrame extends JFrame {
                 }
             });
             preferences.add(defSound);
+            defSound.setEnabled(false);
         menuBar.add(preferences);
 
         JMenu help = new JMenu("Help");
@@ -218,11 +215,11 @@ public class AlarmsMainFrame extends JFrame {
             about.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    JOptionPane.showMessageDialog(AlarmsMainFrame.this,
+                    MyOptionPane.showDialog(AlarmsMainFrame.this,
                             "VERSION: " + Main.VERSION + "\n" +
                             "RELEASED: " + Main.RELEASED + "\n" +
                             "AUTHOR: " + Main.AUTHOR,
-                            Main.NAME + " - about", JOptionPane.INFORMATION_MESSAGE);
+                            Main.NAME + " - about", MyOptionPane.INFORMATION_MESSAGE);
                 }
             });
             help.add(about);
